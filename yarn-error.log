@@ -1,0 +1,58 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add -D webpack-cli
+
+PATH: 
+  C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Java\jdk1.8.0_121\bin;C:\Program Files\Java\jdk1.8.0_121\jre\bin;C:\Program Files\Git\cmd;C:\Python27;C:\Android\tools;C:\Android\platform-tools;D:\Program Files\nodejs\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;;C:\Users\Administrator\AppData\Roaming\npm;D:\Program Files\Microsoft VS Code\bin
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  10.16.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\Administrator\AppData\Local\Yarn\Cache\v4\npm-inherits-2.0.1-b17d08d326b4423e568eff719f91b0b1cbdf69f1\node_modules\inherits\README.md' -> 'C:\Users\Administrator\Desktop\www\node_modules\assert\node_modules\inherits\README.md'
+
+npm manifest: 
+  {
+    "name": "www",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "dev": "webpack-dev-server --open --port 3000  --hot"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      
+      "babel-preset-env": "^1.7.0",
+      "babel-preset-stage-0": "^6.24.1",
+      "css-loader": "^3.2.0",
+      "file-loader": "^4.2.0",
+      "html-webpack-plugin": "^3.2.0",
+      
+      "less": "^3.10.3",
+      "less-loader": "^5.0.0",
+      "node-sass": "^4.12.0",
+      "sass-loader": "^7.3.1",
+      "style-loader": "^1.0.0",
+      "url-loader": "^2.1.0",
+      "webpack-dev-server": "^3.8.0"
+    },
+    "dependencies": {
+      "bootstrap": "^3.4.1",
+      "jquery": "^3.4.1",
+      "webpack": "^4.39.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
