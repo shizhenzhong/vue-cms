@@ -8,6 +8,7 @@ import './lib/mui/css/mui.min.css' //导入minui组件css
 import './lib/mui/css/icons-extra.css'
 
 
+
 //注册mint-ui组件
 Vue.component(Header.name, Header);
 
