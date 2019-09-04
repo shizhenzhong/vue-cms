@@ -21,6 +21,7 @@ Vue.use(VueRouter)
 //导入vue-resource
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+Vue.http.options.root='http:www.ssrts' //修改请求域名
 
 
 

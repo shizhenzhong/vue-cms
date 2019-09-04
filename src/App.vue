@@ -42,12 +42,12 @@ export default {
   }
   .v-enter{
 	  opacity: 0;
-	  transform: translateX(100%);
+	  transform: translateX(-100%) translateY(-100%);
 	  
   }
   .v-leave-to{
 	  opacity: 0;
-	  transform: translateX(-100%);
+	  transform: translateX(100%) translateY(100%);
 	  position: absolute;
 
   }
