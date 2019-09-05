@@ -6,12 +6,15 @@
             <span>点击次数:{{newsInfo.click}}</span>
         </p>
         <hr>
-
+       <!--新闻详情内容区-->
        <div class="content" v-html="newsInfo.content"></div>
+       <!--评论子组件区-->
+       <comment-box></comment-box>
     </div>
 </template>
 <script>
 import {Toast} from 'mint-ui'
+import comments from '../subComponents/comment.vue'
 export default {
     data(){
         return{
@@ -33,6 +36,9 @@ export default {
             })
         }
     },
+    component:{
+        "comment-box":comments
+    }
 }
 </script>
 <style lang="scss">
