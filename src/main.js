@@ -23,6 +23,11 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.http.options.root='http:www.ssrts' //修改请求域名
 
+import moment from 'moment'
+//定义全局的过滤器
+Vue.filter('dateFormat',function(dateStr,pattern="YYYY-MM-DD HH:mm:ss"){
+    return moment(dateStr).format(pattern)
+})
 
 
 import App from './App.vue'

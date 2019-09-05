@@ -7,6 +7,7 @@ import MemberContainer from './components/tabbar/MemberContainer.vue'
 import ShopcarContainer from './components/tabbar/ShopcarContainer.vue'
 import SearchContainer from './components/tabbar/SearchContainer.vue'
 import NewsListContainer from './components/news/NewsListContainer.vue'
+import NewsInfoContainer from './components/news/NewsInfoContainer.vue'
 
 var  router=new VueRouter({
     routes:[
@@ -15,7 +16,8 @@ var  router=new VueRouter({
         {path:"/member",component:MemberContainer},
         {path:'/shopcar',component:ShopcarContainer},
         {path:'/search',component:SearchContainer},
-        {path:'/home/newslist',component:NewsListContainer}
+        {path:'/home/newslist',component:NewsListContainer},
+        {path:'/home/newsInf/:id',component:NewsInfoContainer}
     ],
     linkActiveClass:'mui-active'
 })
