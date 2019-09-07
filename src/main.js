@@ -22,6 +22,7 @@ Vue.use(VueRouter)
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.http.options.root='http:www.ssrts' //修改请求域名
+Vue.http.options.emulateJSON=true //设置表单提交的格式
 
 import moment from 'moment'
 //定义全局的过滤器
