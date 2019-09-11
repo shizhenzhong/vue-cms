@@ -3,7 +3,7 @@
       	<div id="slider" class="mui-slider">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll">
-						<a  :class="['mui-control-item',item.id===0?'mui-active':'']" v-for="item in cates" :key="item.id">
+						<a  :class="['mui-control-item',item.id===0?'mui-active':'']" v-for="item in cates" :key="item.id" @click="getImglistByCateId(item.id)">
 							{{item.title}}
 						</a>
 					
@@ -11,6 +11,18 @@
 				</div>
 
 			</div>
+
+			<!--图片列表区域-->
+			<ul class="photolist">
+               <router-link v-for="item in list" :key="item.id" :to="'home/photoinfo'+item.id" tag="li">
+                  <img v-lazy="item.img_url">
+				   <div class="info">
+						<h1 class="info-title">{{item.title}}</h1>
+						<div class="info-body">{{item.zhaiyao}}</div>
+			       </div>
+               </router-link>
+			  
+            </ul>
     </div>
 </template>
 <script>
@@ -21,11 +33,13 @@ import {Toast} from 'mint-ui'
 export default {
     data(){
         return {
-           cates:[]
+		   cates:[],
+		   list:[]
         }
 	},
 	created(){
-        this.getCategories()
+		this.getCategories();
+		this.getImglistByCateId(0);
 	},
     mounted(){
         mui('.mui-scroll-wrapper').scroll({
@@ -41,10 +55,60 @@ export default {
                    Toast("获取图片分类失败")
 				}
 			})
+		},
+
+		getImglistByCateId(cateId){
+            this.$http.get("api/getImglistByCateId"+cateId).then(result=>{
+				if(result.body.status===0){
+                       this.list=result.body.message
+				}else{
+                   Toast("获取图片列表失败")
+				}
+			})
 		}
     },
 }
 </script>
 <style lang="scss" scoped>
      * { touch-action: pan-y; } 
+	 .photolist{
+        list-style: none;
+		margin: 0;
+		padding: 10px;
+		padding-bottom: 0;
+        li{
+			background-color: #ccc;
+			text-align: center;
+			margin-bottom: 10px;
+			box-shadow: 0 0 9px #999;
+			position: relative;
+
+			img{
+				width: 100%;
+				vertical-align:middle;
+			}
+			image[lazy=loading] {
+				width: 40px;
+				height: 300px;
+				margin: auto;				
+			}
+			.info{
+			  color:white;
+			  text-align: left;
+			  position: absolute;
+			  bottom: 0;
+			  background-color:rgba(0,0,0,0.4);
+			  max-height: 84px;
+			  .info-title{
+				  font-size: 14px;
+			  }
+			  .info-body{
+				  font-size: 13px;
+			  }
+			}
+		}
+		
+		
+	 }
+	
 </style>

@@ -9,6 +9,8 @@ import SearchContainer from './components/tabbar/SearchContainer.vue'
 import NewsListContainer from './components/news/NewsListContainer.vue'
 import NewsInfoContainer from './components/news/NewsInfoContainer.vue'
 import PhotoList from './components/photo/photolist.vue'
+import PhotoInfo from './components/photo/photoinfo.vue'
+
 var  router=new VueRouter({
     routes:[
         {path:"/",redirect:"/home"},
@@ -18,7 +20,8 @@ var  router=new VueRouter({
         {path:'/search',component:SearchContainer},
         {path:'/home/newslist',component:NewsListContainer},
         {path:'/home/newsInf/:id',component:NewsInfoContainer},
-        {path:'/home/photolist',component:PhotoList}
+        {path:'/home/photolist',component:PhotoList},
+        {path:'home/photolist/:id',component:PhotoInfo}
     ],
     linkActiveClass:'mui-active'
 })
