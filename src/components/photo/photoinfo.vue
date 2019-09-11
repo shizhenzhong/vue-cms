@@ -8,6 +8,9 @@
        <hr>
        
        <!---图片缩略区-->
+       <div class="thumb">
+         <vue-preview :slides="lists" @close="handleClose"></vue-preview>
+       </div>
        <!---图片内容区----->
        <div class="content" v-html="photoinfo.content"></div>
        
@@ -23,7 +26,8 @@ export default {
     data(){
       return{
           id:this.$route.params.id,
-          photoinfo:{}
+          photoinfo:{},
+          lists:[]
       }
     },
     created(){
@@ -38,7 +42,20 @@ export default {
                     this.photoinfo=result.body.message[0];
                 }
             });
-        }
+        },
+        getThumbs(){
+             this.$http.get("api/getthumbimage/"+this.id).then(result=>{
+                if(result.body.status===0){
+                    this.lists=result.body.message.forEach(item=>{
+                        item.w=600,
+                        item.h=400
+                    });
+                }
+            });
+        },
+        handleClose () {
+        console.log('close event')
+      }
     },
     components:{
         "ctm-box":comment
@@ -63,6 +80,12 @@ export default {
         .content{
            font-size: 13px;
            line-height: 30px;
+        }
+        .thumb{
+            img{
+                margin: 10px;
+                box-shadow: 0 0 8px #999;
+            }
         }
     }
 </style>

@@ -27,6 +27,20 @@ Vue.use(VueResource)
 Vue.http.options.root='http:www.ssrts' //修改请求域名
 Vue.http.options.emulateJSON=true //设置表单提交的格式
 
+//引入图片缩略图组件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview, {
+    mainClass: 'pswp--minimal--dark',
+     barsSize: {top: 0, bottom: 0},
+    captionEl: false,
+    fullscreenEl: false,
+    shareEl: false,
+    bgOpacity: 0.85,
+    tapToClose: true,
+    tapToToggleControls: false
+  })
+
+
 import moment from 'moment'
 //定义全局的过滤器
 Vue.filter('dateFormat',function(dateStr,pattern="YYYY-MM-DD HH:mm:ss"){

@@ -58,7 +58,7 @@ export default {
 		},
 
 		getImglistByCateId(cateId){
-            this.$http.get("api/getImglistByCateId"+cateId).then(result=>{
+            this.$http.get("api/getImglistByCateId/"+cateId).then(result=>{
 				if(result.body.status===0){
                        this.list=result.body.message
 				}else{

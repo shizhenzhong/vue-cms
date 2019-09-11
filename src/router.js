@@ -10,7 +10,7 @@ import NewsListContainer from './components/news/NewsListContainer.vue'
 import NewsInfoContainer from './components/news/NewsInfoContainer.vue'
 import PhotoList from './components/photo/photolist.vue'
 import PhotoInfo from './components/photo/photoinfo.vue'
-
+import vuepreview from './components/photo/vuepreview.vue'
 var  router=new VueRouter({
     routes:[
         {path:"/",redirect:"/home"},
@@ -21,7 +21,8 @@ var  router=new VueRouter({
         {path:'/home/newslist',component:NewsListContainer},
         {path:'/home/newsInf/:id',component:NewsInfoContainer},
         {path:'/home/photolist',component:PhotoList},
-        {path:'home/photolist/:id',component:PhotoInfo}
+        {path:'home/photolist/:id',component:PhotoInfo},
+        {path:"/home/vuepreview",component:vuepreview}
     ],
     linkActiveClass:'mui-active'
 })
