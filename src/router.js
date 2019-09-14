@@ -11,6 +11,9 @@ import NewsInfoContainer from './components/news/NewsInfoContainer.vue'
 import PhotoList from './components/photo/photolist.vue'
 import PhotoInfo from './components/photo/photoinfo.vue'
 import vuepreview from './components/photo/vuepreview.vue'
+import GoodsList from './components/goods/goodslist.vue'
+import GoodsInfo from './components/goods/goodsinfo.vue'
+
 var  router=new VueRouter({
     routes:[
         {path:"/",redirect:"/home"},
@@ -22,7 +25,9 @@ var  router=new VueRouter({
         {path:'/home/newsInf/:id',component:NewsInfoContainer},
         {path:'/home/photolist',component:PhotoList},
         {path:'home/photolist/:id',component:PhotoInfo},
-        {path:"/home/vuepreview",component:vuepreview}
+        {path:"/home/vuepreview",component:vuepreview},
+        {path:"/home/goodslist",component:GoodsList},
+        {path:"/home/goodsinfo/:id", component:GoodsInfo,name:"goodsinfo"}
     ],
     linkActiveClass:'mui-active'
 })
