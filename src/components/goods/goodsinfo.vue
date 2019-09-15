@@ -9,10 +9,19 @@
 		</div>
 
         <div class="mui-card">
-				<div class="mui-card-header">页眉</div>
+				<div class="mui-card-header">{{goodsInfo.title}}</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
-						包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+					   <p>
+                           市场价：<del>¥{{goodsInfo.market_price}}</del>&nbsp;&nbsp;销售价: <span class="now_price">¥{{goodsInfo.cell_price}}</span>
+                       </p>
+                       <p>
+                           购买数量：<numbox :max="goodsInfo.stock_quantity"></numbox>
+                       </p>
+                       <p>
+                           <mt-button type="primary" size="small">立即购买</mt-button>
+                           <mt-button type="danger" size="small">加入购物车</mt-button>
+                       </p>
 					</div>
 				</div>
 				
@@ -20,13 +29,18 @@
 
 
         <div class="mui-card">
-				<div class="mui-card-header">页眉</div>
+				<div class="mui-card-header">商品参数</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
-						包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+						<p>商品货号:{{goodsInfo.goods_no}}</p>
+                        <p>库存情况:{{goodsInfo.stock_quantity}}件</p>
+                        <p>上架时间:{{goodsInfo.add_time| dateFormat}}</p>
 					</div>
 				</div>
-				<div class="mui-card-footer">页脚</div>
+				<div class="mui-card-footer">
+                   <mt-button type="primary" size="lager" plain @click="goDesc(id)">图文介绍</mt-button>
+                   <mt-button type="danger" size="lager" plain @click="goComment(id)">商品评论</mt-button>
+                </div>                    
 		</div>
  
     </div>
@@ -37,16 +51,18 @@ export default {
     data(){
         return{
             id:this.$route.params.id,  //获取商品图片id，
-            lunbotulist:[]
+            lunbotulist:[],
+            goodsInfo:{}
 
         }
     },
     created(){
         this.getlunbolist();
+        this.getGoodsInfo();
     },
     methods: {
         getlunbolist(){
-            this.$http.get("api/getlunbolist"+this.id)
+            this.$http.get("api/getlunbolist/"+this.id)
             .then(res=>{
                 if(res.body.status===0){
                     res.body.message.forEach(item=>{
@@ -55,7 +71,22 @@ export default {
                     this.lunbotulist=res.body.message;
                 }
             })
+        },
+        getGoodsInfo(){
+            this.$http.get("api/getGoodsInfo/"+this.id).then(result=>{
+                if(result.body.status===0){
+                     this.goodsInfo=result.body.message[0];
+                }
+            })
+
+        },
+        goDesc(id){
+            this.$router.push({name:"goodsDesc",params:{id}});
+        },
+        goComment(id){
+            this.$router.push({name:"goodsComment",params:{id}});
         }
+
     },
     components:{
         swiper
@@ -66,5 +97,17 @@ export default {
     .goosinfo_container{
           background-color: #eee;
           overflow: hidden;
+          .now_price{
+              color:red;
+              font-weight:bold;
+              font-size: 16px;
+          }
+         .mui-card-footer{
+             display: block;
+             button{
+                 margin: 15px 0;
+             }
+         }
+
     }
 </style>
