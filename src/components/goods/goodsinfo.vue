@@ -26,7 +26,7 @@
                            市场价：<del>¥{{goodsInfo.market_price}}</del>&nbsp;&nbsp;销售价: <span class="now_price">¥{{goodsInfo.cell_price}}</span>
                        </p>
                        <p>
-                           购买数量：<numbox :max="goodsInfo.stock_quantity"></numbox>
+                           购买数量：<numbox @getcount="getSelectedCount" :max="goodsInfo.stock_quantity"></numbox>
                        </p>
                        <p>
                            <mt-button type="primary" size="small">立即购买</mt-button>
@@ -56,14 +56,16 @@
     </div>
 </template>
 <script>
-import swiper from '../subComponents/swiper.vue'
+import swiper from '../subComponents/swiper.vue'  //导入轮播图子组件
+import munbox from '../subComponents/goodsinfo_numbox.vue'
 export default {
     data(){
         return{
             id:this.$route.params.id,  //获取商品图片id，
             lunbotulist:[],
             goodsInfo:{},
-            ballFlag:false
+            ballFlag:false,
+            selectCount:1
 
         }
     },
@@ -117,11 +119,15 @@ export default {
         },
         afterEnter(el){
            this.ballFlag=!this.ballFlag;
+        },
+        getSelectedCount(count){
+            this.selectCount=count;
         }
 
     },
     components:{
-        swiper
+        swiper,
+        munbox
     }
 }
 </script>
