@@ -49,6 +49,7 @@ var store=new Vuex.Store({
       car:[]
     },
     mutations:{
+      //把选择的商品添加到购物车
        AddToCar(state,goodsInfo){
            var flag=false  //设置购物车是否有已添加的商品标志
            state.car.some(item=>{
@@ -65,7 +66,15 @@ var store=new Vuex.Store({
        }
     },
     getters:{
+      //获取添加到购物车的商品数量
+        getCounts(state){
+          var count=0;
+          state.car.forEach(item=>{
+            count+=item.count;
+          });
+          return count;
 
+        }
     }
 })
 
