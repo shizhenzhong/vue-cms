@@ -41,12 +41,18 @@ Vue.use(VuePreview, {
   })
 
 //引入Vuex状态管理
+
+
+
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
+//网站一开始，先从本地存储中获取商品列表
+var car =JSON.parse(localStorage.getItem('car')||'[]')
+
 var store=new Vuex.Store({
     state:{
-      car:[]
+      car:car
     },
     mutations:{
       //把选择的商品添加到购物车
@@ -62,6 +68,8 @@ var store=new Vuex.Store({
 
            if(!flag){
              state.car.push(goodsInfo);
+             localStorage.setItem('car',JSON.stringify(state.car));//把商品添加到本地存储
+
            }
        }
     },
