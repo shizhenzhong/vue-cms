@@ -40,6 +40,36 @@ Vue.use(VuePreview, {
     tapToToggleControls: false
   })
 
+//引入Vuex状态管理
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+var store=new Vuex.Store({
+    state:{
+      car:[]
+    },
+    mutations:{
+       AddToCar(state,goodsInfo){
+           var flag=false  //设置购物车是否有已添加的商品标志
+           state.car.some(item=>{
+             if(item.id==goodsInfo.id){
+               item.count+=parseInt(goodsInfo.count);
+               flag=true;
+               return true;
+             }
+           });
+
+           if(!flag){
+             state.car.push(goodsInfo);
+           }
+       }
+    },
+    getters:{
+
+    }
+})
+
+
 
 import moment from 'moment'
 //定义全局的过滤器
@@ -50,10 +80,12 @@ Vue.filter('dateFormat',function(dateStr,pattern="YYYY-MM-DD HH:mm:ss"){
 
 import App from './App.vue'
 import router from './router.js'
+import { stat } from 'fs'
 var vm=new Vue({
     el:'#app',
     render:c=>c(App),
-    router
+    router,
+    Vuex
    
 })
 

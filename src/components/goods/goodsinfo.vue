@@ -62,10 +62,10 @@ export default {
     data(){
         return{
             id:this.$route.params.id,  //获取商品图片id，
-            lunbotulist:[],
-            goodsInfo:{},
-            ballFlag:false,
-            selectCount:1
+            lunbotulist:[],//轮播图数据
+            goodsInfo:{},//获取到商品信息
+            ballFlag:false,//控制小球显示和隐藏的标志
+            selectCount:1 //用户选择的商品数量，默认为1
 
         }
     },
@@ -119,6 +119,13 @@ export default {
         },
         afterEnter(el){
            this.ballFlag=!this.ballFlag;
+           var goodsInfo={
+               id:this.id,
+               count:this.selectCount,
+               price:this.goodsInfo.sell_price,
+               selected:true
+               };
+            this.$store.commit("AddToCar",goodsInfo);
         },
         getSelectedCount(count){
             this.selectCount=count;
